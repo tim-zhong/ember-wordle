@@ -1,10 +1,12 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { COLS, ROWS } from 'ember-wordle/consts';
+import { COLS, ROWS, KEYBOARD } from 'ember-wordle/consts';
 import evaluate from 'ember-wordle/utils/evaluate';
 
 export default class GameController extends Controller {
+  KEYBOARD = KEYBOARD;
+
   @tracked
   userInput = '';
 
