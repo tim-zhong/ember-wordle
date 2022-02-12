@@ -1,7 +1,5 @@
-{{page-title "EmberWordle"}}
-
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
+{{page-title 'EmberWordle'}}
+<button type="button" {{on 'click' this.createGame}}>
+  New Game
+</button>
 {{outlet}}
