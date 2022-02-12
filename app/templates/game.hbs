@@ -1,1 +1,10 @@
-{{this.model.solution}}
+{{this.userInput}}
+{{#each (alphabet) as |char|}}
+  <button
+    type="button"
+    {{on 'click' (fn this.handleInput char)}}
+    {{on-key (concat 'Key' char)}}
+  >
+    {{char}}
+  </button>
+{{/each}}
