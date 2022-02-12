@@ -1,6 +1,14 @@
 <div class="game">
   <div class="game__grid-container">
-    {{this.userInput}}
+    {{#each this.grid as |row|}}
+      <div class="grid__row">
+        {{#each row as |letter|}}
+          <span class="grid__letter">
+            {{letter}}
+          </span>
+        {{/each}}
+      </div>
+    {{/each}}
   </div>
   <div class="game__keyboard-container">
     {{#each this.KEYBOARD as |row|}}

@@ -5,6 +5,11 @@ export const ALPHABET = Array.from(Array(26)).map((e, i) =>
   String.fromCharCode(i + 65)
 );
 
+export const SPECIAL_KEY = {
+  ENTER: { name: 'Enter', code: 'Enter' },
+  BACKSPACE: { name: 'Backspace', code: 'Backspace' },
+};
+
 export const KEYBOARD = [
   [
     { name: 'Q', code: 'KeyQ' },
@@ -30,7 +35,7 @@ export const KEYBOARD = [
     { name: 'L', code: 'KeyL' },
   ],
   [
-    { name: 'Enter', code: 'Enter' },
+    SPECIAL_KEY.ENTER,
     { name: 'Z', code: 'KeyZ' },
     { name: 'X', code: 'KeyX' },
     { name: 'C', code: 'KeyC' },
@@ -38,6 +43,6 @@ export const KEYBOARD = [
     { name: 'B', code: 'KeyB' },
     { name: 'N', code: 'KeyN' },
     { name: 'M', code: 'KeyM' },
-    { name: 'Backspace', code: 'Backspace' },
+    SPECIAL_KEY.BACKSPACE,
   ],
 ];
