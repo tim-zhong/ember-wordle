@@ -1,9 +1,9 @@
-{{#each this.grid as |row|}}
-  <div class="grid__row">
-    {{#each row as |letter|}}
-      <span class="grid__letter">
-        {{letter}}
-      </span>
-    {{/each}}
-  </div>
-{{/each}}
+<div class="grid">
+  {{#each this.grid key='@index' as |row|}}
+    <div class="grid__row">
+      {{#each row key='@index' as |letter|}}
+        <Game::GridTile @letter={{letter}} />
+      {{/each}}
+    </div>
+  {{/each}}
+</div>

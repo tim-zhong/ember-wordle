@@ -1,0 +1,34 @@
+.grid {
+  &__row {
+    display: flex;
+  }
+
+  &__tile {
+    width: $grid-cell-dimension;
+    height: $grid-cell-dimension;
+    line-height: $grid-cell-dimension;
+    border: 2px solid $grey1;
+    margin: 3px;
+    text-align: center;
+    font-size: 2rem;
+    font-family: sans-serif;
+    font-weight: bold;
+
+    &--filled {
+      border-color: $grey2;
+    }
+  }
+}
+
+.pop {
+  @include inline-animation(0.1s, 1) {
+    0% {
+      transform: scale(0.8);
+      opacity: 0;
+    }
+    40% {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
+}
