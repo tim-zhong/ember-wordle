@@ -13,9 +13,52 @@
     font-size: 2rem;
     font-family: sans-serif;
     font-weight: bold;
+    background-color: $white;
 
     &--filled {
-      border-color: $grey2;
+      border-color: $grey3;
+    }
+
+    &--correct,
+    &--present,
+    &--absent {
+      color: $white;
+
+      @for $i from 0 through 10 {
+        &:nth-child(#{$i}n) {
+          animation-delay: #{$i * 100}ms;
+          transition: color 0s #{$i * 100 + 250}ms,
+            background-color 0s #{$i * 100 + 250}ms,
+            border-color 0s #{$i * 100 + 250}ms;
+        }
+      }
+
+      @include inline-animation(500ms, ease-in) {
+        0% {
+          transform: rotateX(0);
+        }
+        50% {
+          transform: rotateX(-90deg);
+        }
+        100% {
+          transform: rotateX(0);
+        }
+      }
+    }
+
+    &--correct {
+      border-color: $correct;
+      background-color: $correct;
+    }
+
+    &--present {
+      border-color: $present;
+      background-color: $present;
+    }
+
+    &--absent {
+      border-color: $absent;
+      background-color: $absent;
     }
   }
 }

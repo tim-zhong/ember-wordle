@@ -34,8 +34,11 @@ export default class GameController extends Controller {
       userInput.length === COLS &&
       model.evaluations.length < ROWS
     ) {
-      model.evaluations.push(evaluate(userInput, model.solution));
-      model.inputs.push(userInput);
+      model.evaluations = [
+        ...model.evaluations,
+        evaluate(userInput, model.solution),
+      ];
+      model.inputs = [...model.inputs, userInput];
 
       this.currentInput = '';
     }

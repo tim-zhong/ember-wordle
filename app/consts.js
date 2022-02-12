@@ -5,6 +5,12 @@ export const ALPHABET = Array.from(Array(26)).map((e, i) =>
   String.fromCharCode(i + 65)
 );
 
+export const EVALUATION = {
+  CORRECT: 'CORRECT',
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT',
+};
+
 export const SPECIAL_KEY = {
   ENTER: { name: 'Enter', code: 'Enter' },
   BACKSPACE: { name: 'Backspace', code: 'Backspace' },

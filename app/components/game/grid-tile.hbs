@@ -1,5 +1,8 @@
 <div
-  class="grid__tile {{if @letter 'grid__tile--filled'}}"
+  class="grid__tile
+    {{if @letter 'grid__tile--filled'}}
+
+    {{if @evaluation (concat 'grid__tile--' (lowercase @evaluation))}}"
   {{did-update this.handleLetterUpdate @letter}}
 >
   {{@letter}}

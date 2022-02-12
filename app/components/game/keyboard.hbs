@@ -6,6 +6,7 @@
         class="keyboard__key"
         {{on 'click' (fn @handleInput key.name)}}
         {{on-key key.code}}
+        {{on-key (concat 'shift+' key.code)}}
       >
         {{key.name}}
       </button>

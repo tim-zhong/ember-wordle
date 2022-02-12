@@ -1,4 +1,4 @@
-@mixin inline-animation($duration, $count) {
+@mixin inline-animation($duration, $timing-function) {
   $name: inline-#{unique-id()};
 
   @keyframes #{$name} {
@@ -7,5 +7,6 @@
 
   animation-name: $name;
   animation-duration: $duration;
-  animation-iteration-count: $count;
+  animation-timing-function: $timing-function;
+  animation-iteration-count: 1;
 }

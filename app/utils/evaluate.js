@@ -1,3 +1,5 @@
+import { EVALUATION } from 'ember-wordle/consts';
+
 export default function evaluate(input, solution) {
   if (input.length !== solution.length) {
     throw new Error(
@@ -7,11 +9,11 @@ export default function evaluate(input, solution) {
 
   return input.split('').reduce((result, char, index) => {
     if (solution[index].toLowerCase() === char.toLowerCase()) {
-      return [...result, 'correct'];
+      return [...result, EVALUATION.CORRECT];
     }
-    if (solution.includes(char)) {
-      return [...result, 'misplaced'];
+    if (solution.toLowerCase().includes(char.toLowerCase())) {
+      return [...result, EVALUATION.PRESENT];
     }
-    return [...result, 'incorrect'];
+    return [...result, EVALUATION.ABSENT];
   }, []);
 }
