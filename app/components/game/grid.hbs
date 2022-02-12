@@ -1,0 +1,9 @@
+{{#each this.grid as |row|}}
+  <div class="grid__row">
+    {{#each row as |letter|}}
+      <span class="grid__letter">
+        {{letter}}
+      </span>
+    {{/each}}
+  </div>
+{{/each}}

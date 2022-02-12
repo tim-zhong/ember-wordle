@@ -1,19 +1,12 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { COLS, ROWS, SPECIAL_KEY, KEYBOARD } from 'ember-wordle/consts';
+import { COLS, ROWS, SPECIAL_KEY } from 'ember-wordle/consts';
 import evaluate from 'ember-wordle/utils/evaluate';
-import buildGrid from 'ember-wordle/utils/build-grid';
 
 export default class GameController extends Controller {
-  KEYBOARD = KEYBOARD;
-
   @tracked
   currentInput = '';
-
-  get grid() {
-    return buildGrid(ROWS, COLS, [...this.model.inputs, this.currentInput]);
-  }
 
   @action
   handleInput(keyName) {
