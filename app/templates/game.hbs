@@ -1,7 +1,7 @@
 <div
   class="game"
-  {{did-insert this.maybeOpenStatsModal}}
-  {{did-update this.maybeOpenStatsModal this.model.status}}
+  {{did-insert this.maybeShowPostGameState}}
+  {{did-update this.maybeShowPostGameState this.model.status}}
 >
   <header class="game__header">
     <button class="game__header__button" type="button">
@@ -23,6 +23,13 @@
       @evaluations={{this.model.evaluations}}
       @isLastWordInvalid={{this.isLastSubmissionInvalid}}
     />
+    <div class="game__button-row">
+      {{#if this.showNextGameButton}}
+        <button class="button" {{on 'click' this.nextGame}}>
+          Next Game
+        </button>
+      {{/if}}
+    </div>
   </div>
   <div class="game__keyboard-container">
     <Game::Keyboard @handleInput={{this.handleInput}} />

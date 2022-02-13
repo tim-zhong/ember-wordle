@@ -6,18 +6,17 @@ import evaluate from 'ember-wordle/utils/evaluate';
 import { later } from '@ember/runloop';
 import { service } from '@ember/service';
 import { EVALUATION, GAME_STATE } from '../consts';
+import { buildGame } from 'ember-wordle/models/game';
 
 export default class GameController extends Controller {
   @service dictionary;
   @service toasts;
   @service store;
+  @service router;
 
   @tracked currentInput = '';
   @tracked isLastSubmissionInvalid = false;
-
-  get finished() {
-    return this.model.state;
-  }
+  @tracked showNextGameButton = false;
 
   @action
   handleInput(keyName) {
@@ -76,6 +75,15 @@ export default class GameController extends Controller {
     model.save();
   }
 
+  @action
+  nextGame() {
+    this.dictionary.pickWord().then((nextWord) => {
+      const newGame = this.store.createRecord('game', buildGame(nextWord));
+      newGame.save();
+      this.router.replaceWith('game', newGame.get('id'));
+    });
+  }
+
   /**
    * ---------------- Modals ----------------
    */
@@ -83,27 +91,34 @@ export default class GameController extends Controller {
   allGames = [];
   @tracked isStatsModalOpen = false;
 
-  @action openStatsModal(delay = 0) {
-    later(() => {
-      // TODO: Fix this
-      this.store.findAll('game').then(({ content }) =>
-        Promise.all(content.map(({ id }) => this.store.query('game', id))).then(
-          (games) => {
-            this.allGames = games;
-            this.isStatsModalOpen = true;
-          }
-        )
-      );
-    }, delay);
+  @action
+  openStatsModal() {
+    // TODO: Fix this
+    this.store.findAll('game').then(({ content }) =>
+      Promise.all(content.map(({ id }) => this.store.query('game', id))).then(
+        (games) => {
+          this.allGames = games;
+          this.isStatsModalOpen = true;
+        }
+      )
+    );
   }
 
-  @action closeStatsModal() {
+  @action
+  closeStatsModal() {
     this.isStatsModalOpen = false;
   }
 
-  @action maybeOpenStatsModal() {
-    if (this.model.status === GAME_STATE.WIN) {
-      this.openStatsModal(1200);
+  @action
+  maybeShowPostGameState() {
+    if (!this.model.status) {
+      return;
     }
+    later(() => {
+      if (this.model.status === GAME_STATE.WIN) {
+        this.openStatsModal(1200);
+      }
+      this.showNextGameButton = true;
+    }, 1200);
   }
 }
