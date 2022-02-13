@@ -1,9 +1,10 @@
 header {
-  height: $header-height;
+  height: 50px;
   border-bottom: 1px solid $grey1;
 }
 
 main {
+  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;

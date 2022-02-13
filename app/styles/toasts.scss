@@ -1,0 +1,36 @@
+$dismiss_transition_duration: 300ms;
+
+.toasts {
+  &__container {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: visible;
+  }
+
+  &__toast {
+    position: relative;
+    background-color: $black;
+    color: $white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-family: sans-serif;
+    text-transform: capitalize;
+    max-height: 999px;
+    opacity: 1;
+    z-index: 2;
+
+    &--inactive {
+      opacity: 0;
+      transition: opacity $dismiss_transition_duration ease-in-out,
+        max-height 0s $dismiss_transition_duration,
+        margin-bottom 0s $dismiss_transition_duration,
+        padding 0s $dismiss_transition_duration;
+      max-height: 0;
+      margin-bottom: 0;
+      padding: 0;
+    }
+  }
+}

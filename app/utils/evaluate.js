@@ -1,11 +1,11 @@
 import { EVALUATION } from 'ember-wordle/consts';
+import { assert } from '@ember/debug';
 
 export default function evaluate(input, solution) {
-  if (input.length !== solution.length) {
-    throw new Error(
-      `Failed to evaluate: ${input} and ${solution} has different length`
-    );
-  }
+  assert(
+    `Failed to evaluate: ${input} and ${solution} has different length`,
+    input.length === solution.length
+  );
 
   return input.split('').reduce((result, char, index) => {
     if (solution[index].toLowerCase() === char.toLowerCase()) {

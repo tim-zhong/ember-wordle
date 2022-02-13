@@ -7,6 +7,7 @@ import { service } from '@ember/service';
 
 export default class GameController extends Controller {
   @service dictionary;
+  @service toasts;
 
   @tracked currentInput = '';
   @tracked isLastSubmissionInvalid = false;
@@ -41,6 +42,7 @@ export default class GameController extends Controller {
     ) {
       if (!this.dictionary.validate(userInput)) {
         this.isLastSubmissionInvalid = true;
+        this.toasts.post('Not in word list', 1000);
         return;
       }
 
