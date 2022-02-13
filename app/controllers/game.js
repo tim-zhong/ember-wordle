@@ -3,13 +3,18 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { COLS, ROWS, SPECIAL_KEY } from 'ember-wordle/consts';
 import evaluate from 'ember-wordle/utils/evaluate';
+import { service } from '@ember/service';
 
 export default class GameController extends Controller {
-  @tracked
-  currentInput = '';
+  @service dictionary;
+
+  @tracked currentInput = '';
+  @tracked isLastSubmissionInvalid = false;
 
   @action
   handleInput(keyName) {
+    this.isLastSubmissionInvalid = false;
+
     if (keyName === SPECIAL_KEY.ENTER.name) {
       this._handleSubmit();
       return;
@@ -34,6 +39,11 @@ export default class GameController extends Controller {
       userInput.length === COLS &&
       model.evaluations.length < ROWS
     ) {
+      if (!this.dictionary.validate(userInput)) {
+        this.isLastSubmissionInvalid = true;
+        return;
+      }
+
       model.evaluations = [
         ...model.evaluations,
         evaluate(userInput, model.solution),

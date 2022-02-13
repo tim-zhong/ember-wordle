@@ -9,4 +9,10 @@ export default class GameGridComponent extends Component {
       this.args.currentInput,
     ]);
   }
+
+  get invalidRowIdx() {
+    return this.args.isLastWordInvalid
+      ? this.args.submittedInputs.length
+      : null;
+  }
 }

@@ -1,6 +1,9 @@
 <div class="grid">
   {{#each this.grid key='@index' as |row rowIdx|}}
-    <div class="grid__row">
+    <div
+      class="grid__row
+        {{if (eq rowIdx this.invalidRowIdx) 'grid__row--invalid'}}"
+    >
       {{#each row key='@index' as |letter colIdx|}}
         <Game::GridTile
           @letter={{letter}}

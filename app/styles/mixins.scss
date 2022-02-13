@@ -1,4 +1,4 @@
-@mixin inline-animation($duration, $timing-function) {
+@mixin inline-animation($duration, $timing-function: '') {
   $name: inline-#{unique-id()};
 
   @keyframes #{$name} {
