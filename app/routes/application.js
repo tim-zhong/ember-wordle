@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import { service } from '@ember/service';
+import { buildGame } from 'ember-wordle/models/game';
 
 export default class ApplicationRoute extends Route {
   @service store;
@@ -20,12 +21,7 @@ export default class ApplicationRoute extends Route {
         return;
       }
 
-      const newGame = this.store.createRecord('game', {
-        startAt: Date.now(),
-        inputs: [],
-        evaluations: [],
-        solution: nextWord,
-      });
+      const newGame = this.store.createRecord('game', buildGame(nextWord));
       newGame.save();
       this.router.transitionTo('game', newGame.get('id'));
     });

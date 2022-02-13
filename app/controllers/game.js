@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { COLS, ROWS, SPECIAL_KEY } from 'ember-wordle/consts';
 import evaluate from 'ember-wordle/utils/evaluate';
 import { service } from '@ember/service';
+import { EVALUATION } from '../consts';
 
 export default class GameController extends Controller {
   @service dictionary;
@@ -46,11 +47,13 @@ export default class GameController extends Controller {
         return;
       }
 
-      model.evaluations = [
-        ...model.evaluations,
-        evaluate(userInput, model.solution),
-      ];
+      const currEvaluation = evaluate(userInput, model.solution);
+      model.evaluations = [...model.evaluations, currEvaluation];
       model.inputs = [...model.inputs, userInput];
+      model.won = !currEvaluation.some((e) => e !== EVALUATION.CORRECT);
+      if (model.won) {
+        model.lastCompletedAt = Date.now();
+      }
 
       this.currentInput = '';
     }

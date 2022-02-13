@@ -19,4 +19,11 @@ export default class GameRoute extends Route {
       return true;
     }
   }
+
+  afterModel(model) {
+    if (!model.won) {
+      model.lastPlayAt = Date.now();
+      model.save();
+    }
+  }
 }
