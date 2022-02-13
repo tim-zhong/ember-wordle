@@ -3,7 +3,7 @@ import Model, { attr } from '@ember-data/model';
 export default class GameModel extends Model {
   @attr('number') lastPlayedAt;
   @attr('number') lastCompletedAt;
-  @attr('boolean') won;
+  @attr('string') status;
   @attr('array') inputs;
   @attr('array') evaluations;
   @attr('string') solution;
@@ -13,7 +13,7 @@ export function buildGame(solution) {
   return {
     lastPlayedAt: null,
     lastCompletedAt: null,
-    won: false,
+    status: null,
     inputs: [],
     evaluations: [],
     solution,

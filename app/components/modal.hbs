@@ -1,10 +1,16 @@
-<div class="modal__overlay">
-  <div class="modal__window">
-    <button class="modal__close-button">
+<div
+  class="modal__overlay"
+  ...attributes
+  {{on 'click' this.handleOverlayClick}}
+>
+  <div class="modal__content" id="modal__content">
+    <button
+      class="modal__close-button"
+      type="button"
+      {{on 'click' this.handleCloseClick}}
+    >
       {{inline-svg 'assets/icons/close'}}
     </button>
-    <div class="modal__content">
     {{yield}}
-    </div>
   </div>
 </div>

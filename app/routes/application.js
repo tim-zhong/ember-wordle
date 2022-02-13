@@ -17,13 +17,13 @@ export default class ApplicationRoute extends Route {
 
     this.dictionary.pickWord().then((nextWord) => {
       if (curerntGameId) {
-        this.router.transitionTo('game', curerntGameId);
+        this.router.replaceWith('game', curerntGameId);
         return;
       }
 
       const newGame = this.store.createRecord('game', buildGame(nextWord));
       newGame.save();
-      this.router.transitionTo('game', newGame.get('id'));
+      this.router.replaceWith('game', newGame.get('id'));
     });
   }
 }

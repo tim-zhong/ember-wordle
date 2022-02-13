@@ -12,7 +12,7 @@ export default class GameRoute extends Route {
 
   @action
   error({ errors }) {
-    if (errors[0]?.status === '404') {
+    if (errors?.[0]?.status === '404') {
       this.router.replaceWith('/');
     } else {
       // Let the route above this handle the error.

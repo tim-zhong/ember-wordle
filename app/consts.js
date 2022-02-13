@@ -11,6 +11,11 @@ export const EVALUATION = {
   ABSENT: 'ABSENT',
 };
 
+export const GAME_STATE = {
+  WIN: 'WIN',
+  FAIL: 'FAIL',
+};
+
 export const SPECIAL_KEY = {
   ENTER: { name: 'Enter', code: 'Enter' },
   BACKSPACE: { name: 'Backspace', code: 'Backspace' },

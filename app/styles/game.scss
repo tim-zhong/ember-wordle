@@ -3,6 +3,22 @@
   display: flex;
   flex-direction: column;
 
+  &__header {
+    height: 50px;
+    border-bottom: 1px solid $grey1;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0 4px;
+    }
+  }
+
   &__main-area {
     flex-grow: 1;
     display: flex;
