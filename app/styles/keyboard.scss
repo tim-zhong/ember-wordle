@@ -7,10 +7,40 @@
 
   &__key {
     cursor: pointer;
-    padding: 16px;
-    margin: 4px;
+    text-transform: uppercase;
+    height: 58px;
+    min-width: 43px;
+    margin: 3px;
     border-radius: 4px;
-    border: 1px solid $black;
-    background: none;
+    border: none;
+    background-color: $grey1;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 250ms 1200ms ease-in,
+      color 250ms 1200ms ease-in;
+
+    &--special {
+      width: 65px;
+    }
+
+    &--correct,
+    &--present,
+    &--absent {
+      color: $white;
+    }
+
+    &--correct {
+      background-color: $correct;
+    }
+
+    &--present {
+      background-color: $present;
+    }
+
+    &--absent {
+      background-color: $absent;
+    }
   }
 }

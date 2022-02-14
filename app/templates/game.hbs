@@ -32,7 +32,11 @@
     </div>
   </div>
   <div class="game__keyboard-container">
-    <Game::Keyboard @handleInput={{this.handleInput}} />
+    <Game::Keyboard
+      @handleInput={{this.handleInput}}
+      @inputs={{this.model.inputs}}
+      @evaluations={{this.model.evaluations}}
+    />
   </div>
 </div>
 {{#if this.isStatsModalOpen}}

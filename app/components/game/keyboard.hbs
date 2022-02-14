@@ -1,14 +1,24 @@
-{{#each this.KEYBOARD as |row|}}
+{{#each this.keyboard key='index' as |row|}}
   <div class="keyboard__row">
-    {{#each row as |key|}}
+    {{#each row key='name' as |key|}}
       <button
         type="button"
-        class="keyboard__key"
+        class="keyboard__key
+          {{key.class}}
+
+          {{if
+            (or (eq key.name 'Backspace') (eq key.name 'Enter'))
+            'keyboard__key--special'
+          }}"
         {{on 'click' (fn @handleInput key.name)}}
         {{on-key key.code}}
         {{on-key (concat 'shift+' key.code)}}
       >
-        {{key.name}}
+        {{#if (eq key.name 'Backspace')}}
+          {{inline-svg 'assets/icons/backspace'}}
+        {{else}}
+          {{key.name}}
+        {{/if}}
       </button>
     {{/each}}
   </div>
