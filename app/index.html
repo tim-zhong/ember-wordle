@@ -11,7 +11,17 @@
     <link rel="icon" href="/assets/images/favicon.ico">
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/ember-wordle.css">
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VLWRFHY2SF"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'G-VLWRFHY2SF');
+    </script>
+    
     {{content-for "head-footer"}}
   </head>
   <body>
