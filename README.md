@@ -1,8 +1,10 @@
 # ember-wordle
 
-A clone of the popular game Wordle using Ember.js
+A clone of the viral Wordle game built with Ember.js.
 
-## Prerequisites
+[Play now!](https://peaceful-edison-51c552.netlify.app)
+
+<!-- ## Prerequisites
 
 You will need the following things properly installed on your computer.
 
@@ -53,4 +55,4 @@ Specify what it takes to deploy your app.
 * [ember-cli](https://ember-cli.com/)
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/) -->

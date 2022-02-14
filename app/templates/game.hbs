@@ -7,20 +7,18 @@
     >
       {{inline-svg 'assets/icons/info'}}
     </button>
-    <div class="game__header__button-group">
-      <button
-        class="game__header__button"
-        type="button"
-        {{on 'click' this.openStatsModal}}
-      >
-        {{inline-svg 'assets/icons/stats'}}
+    <a href="https://github.com/tim-zhong/ember-wordle" target="_blank">
+      <button class="game__header__button" type="button">
+        {{inline-svg 'assets/icons/github'}}
       </button>
-      <a href="https://github.com/tim-zhong/ember-wordle" target="_blank">
-        <button class="game__header__button" type="button">
-          {{inline-svg 'assets/icons/github'}}
-        </button>
-      </a>
-    </div>
+    </a>
+    <button
+      class="game__header__button"
+      type="button"
+      {{on 'click' this.openStatsModal}}
+    >
+      {{inline-svg 'assets/icons/stats'}}
+    </button>
   </header>
   <div class="game__main-area">
     <Toasts />
