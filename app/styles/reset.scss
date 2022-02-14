@@ -132,3 +132,14 @@ table {
 div {
   box-sizing: border-box;
 }
+a {
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
+    border: none;
+    text-decoration: none;
+    outline: none;
+    outline: none;
+  }
+}
