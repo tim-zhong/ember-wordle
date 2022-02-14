@@ -16,7 +16,6 @@ export default class StatsModalComponent extends Component {
 
     const maxStreak = [...games.reverse(), { status: GAME_STATUS.FAIL }].reduce(
       ({ maxStreak, curStreak }, curGame) => {
-        console.log(curGame.status);
         if (curGame.status === GAME_STATUS.WIN) {
           return {
             maxStreak,
@@ -44,7 +43,7 @@ export default class StatsModalComponent extends Component {
       },
       {
         label: 'Win %',
-        value: Math.round((numWon / (numPlayed ?? 1)) * 100),
+        value: Math.round((numWon / (numPlayed || 1)) * 100),
       },
       {
         label: 'Current Streak',
@@ -58,11 +57,10 @@ export default class StatsModalComponent extends Component {
   }
 
   get guessDistribution() {
-    const finishedGames = this.args.games.filter((game) => !!game.status);
-    const freqByGuessCount = groupBy(
-      finishedGames,
-      ({ inputs }) => inputs.length
+    const wonGames = this.args.games.filter(
+      (game) => game.status === GAME_STATUS.WIN
     );
+    const freqByGuessCount = groupBy(wonGames, ({ inputs }) => inputs.length);
 
     return Array(ROWS)
       .fill()
@@ -70,7 +68,7 @@ export default class StatsModalComponent extends Component {
         const guessCount = index + 1;
         const frequency = (freqByGuessCount[index + 1] ?? []).length;
         const percentage = Math.round(
-          (frequency * 100) / (finishedGames.length ?? 1)
+          (frequency * 100) / (wonGames.length || 1)
         );
         return {
           guessCount,

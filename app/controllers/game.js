@@ -5,7 +5,7 @@ import { COLS, ROWS, SPECIAL_KEY } from 'ember-wordle/consts';
 import evaluate from 'ember-wordle/utils/evaluate';
 import { later } from '@ember/runloop';
 import { service } from '@ember/service';
-import { EVALUATION, GAME_STATE } from '../consts';
+import { EVALUATION, GAME_STATE, CHEERS } from '../consts';
 import { buildGame } from 'ember-wordle/models/game';
 
 export default class GameController extends Controller {
@@ -17,6 +17,8 @@ export default class GameController extends Controller {
   @tracked currentInput = '';
   @tracked isLastSubmissionInvalid = false;
   @tracked showNextGameButton = false;
+
+  destructors = [];
 
   @action
   handleInput(keyName) {
@@ -50,9 +52,11 @@ export default class GameController extends Controller {
       userInput.length === COLS &&
       model.evaluations.length < ROWS
     ) {
+      model.lastPlayedAt = Date.now();
+
       if (!this.dictionary.validate(userInput)) {
         this.isLastSubmissionInvalid = true;
-        this.toasts.post('Not in word list', 1000);
+        this.destructors.push(this.toasts.post('Not in word list', 1000));
         return;
       }
 
@@ -62,11 +66,16 @@ export default class GameController extends Controller {
 
       if (!currEvaluation.some((e) => e !== EVALUATION.CORRECT)) {
         model.status = GAME_STATE.WIN;
+        model.lastCompletedAt = Date.now();
+        later(
+          () =>
+            this.destructors.push(
+              this.toasts.post(CHEERS[this.model.inputs.length - 1], 2000)
+            ),
+          1200
+        );
       } else if (model.evaluations.length === ROWS) {
         model.status = GAME_STATE.FAIL;
-      }
-      if (model.status) {
-        model.lastCompletedAt = Date.now();
       }
 
       this.currentInput = '';
@@ -78,10 +87,18 @@ export default class GameController extends Controller {
   @action
   nextGame() {
     this.dictionary.pickWord().then((nextWord) => {
+      this.cleanup();
+
       const newGame = this.store.createRecord('game', buildGame(nextWord));
       newGame.save();
       this.router.replaceWith('game', newGame.get('id'));
     });
+  }
+
+  @action
+  cleanup() {
+    this.destructors.forEach((distruct) => distruct());
+    this.closeStatsModal();
   }
 
   /**
@@ -118,6 +135,11 @@ export default class GameController extends Controller {
     later(() => {
       if (this.model.status === GAME_STATE.WIN) {
         this.openStatsModal(1200);
+      }
+      if (this.model.status === GAME_STATE.FAIL) {
+        this.destructors.push(
+          this.toasts.post(this.model.solution.toUpperCase())
+        );
       }
       this.showNextGameButton = true;
     }, 1200);

@@ -20,8 +20,4 @@ export function buildGame(solution) {
   };
 }
 // success state
-// stats
-// model in application
 // display answer if failed
-// keyboard
-// header

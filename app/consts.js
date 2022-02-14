@@ -21,6 +21,15 @@ export const SPECIAL_KEY = {
   BACKSPACE: { name: 'Backspace', code: 'Backspace' },
 };
 
+export const CHEERS = [
+  'Genius',
+  'Magnificent',
+  'Impressive',
+  'Splendid',
+  'Great',
+  'Phew',
+];
+
 export const KEYBOARD = [
   [
     { name: 'Q', code: 'KeyQ' },

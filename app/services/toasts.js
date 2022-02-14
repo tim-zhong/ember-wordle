@@ -45,9 +45,7 @@ export default class ToastService extends Service {
 
     return () => {
       timers.forEach(cancel);
-
-      this.toastMap.get(id).active = false;
-      later(() => this.toastMap.delete(id), durationMS + CLEAUP_DELAY_MS);
+      this.toastMap.delete(id);
     };
   }
 }
