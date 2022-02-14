@@ -88,20 +88,21 @@ export default class GameController extends Controller {
    * ---------------- Modals ----------------
    */
 
-  allGames = [];
+  @tracked allGames = [];
   @tracked isStatsModalOpen = false;
 
   @action
   openStatsModal() {
     // TODO: Fix this
-    this.store.findAll('game').then(({ content }) =>
-      Promise.all(content.map(({ id }) => this.store.query('game', id))).then(
-        (games) => {
-          this.allGames = games;
-          this.isStatsModalOpen = true;
-        }
+    this.store
+      .findAll('game')
+      .then(({ content }) =>
+        Promise.all(content.map(({ id }) => this.store.findRecord('game', id)))
       )
-    );
+      .then((games) => {
+        this.allGames = games;
+        this.isStatsModalOpen = true;
+      });
   }
 
   @action

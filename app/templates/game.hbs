@@ -26,7 +26,7 @@
     <div class="game__button-row">
       {{#if this.showNextGameButton}}
         <button class="button" {{on 'click' this.nextGame}}>
-          Next Game
+          Next Wordle
         </button>
       {{/if}}
     </div>
@@ -36,5 +36,9 @@
   </div>
 </div>
 {{#if this.isStatsModalOpen}}
-  <StatsModal @onClose={{this.closeStatsModal}} @games={{this.games}} />
+  <StatsModal
+    @onClose={{this.closeStatsModal}}
+    @games={{this.allGames}}
+    @goToNextGame={{if this.model.status this.nextGame}}
+  />
 {{/if}}
