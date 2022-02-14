@@ -1,9 +1,5 @@
-<div
-  class="modal__overlay"
-  ...attributes
-  {{on 'click' this.handleOverlayClick}}
->
-  <div class="modal__content" id="modal__content">
+<div class="modal__overlay" {{on 'click' this.handleOverlayClick}}>
+  <div class="modal__content" id="modal__content" ...attributes>
     <button
       class="modal__close-button"
       type="button"

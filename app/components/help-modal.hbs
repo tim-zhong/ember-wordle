@@ -1,0 +1,95 @@
+<Modal @onClose={{@onClose}} class="help-modal">
+  <div class="help-modal__section">
+    <h1 class="help-modal__header">
+      HOW TO PLAY
+    </h1>
+    <p>
+      Guess the WORDLE in six tries.
+    </p>
+    <p>
+      Each guess must be a valid five-letter word. Hit the enter button to submit.
+    </p>
+    <p>
+      After each guess, the color of the tiles will change to show how close your guess was to the word.
+    </p>
+  </div>
+  <div class="help-modal__section">
+    <p>
+      <strong>
+        Examples
+      </strong>
+    </p>
+    <div class="help-modal__example">
+      <div class="help-modal__example-tile help-modal__example-tile--correct">
+        W
+      </div>
+      <div class="help-modal__example-tile">
+        E
+      </div>
+      <div class="help-modal__example-tile">
+        A
+      </div>
+      <div class="help-modal__example-tile">
+        R
+      </div>
+      <div class="help-modal__example-tile">
+        Y
+      </div>
+    </div>
+    <p>
+      The letter
+      <strong>
+        W
+      </strong>
+      is in the word and in the correct spot.
+    </p>
+    <div class="help-modal__example">
+      <div class="help-modal__example-tile">
+        P
+      </div>
+      <div class="help-modal__example-tile help-modal__example-tile--present">
+        I
+      </div>
+      <div class="help-modal__example-tile">
+        L
+      </div>
+      <div class="help-modal__example-tile">
+        L
+      </div>
+      <div class="help-modal__example-tile">
+        S
+      </div>
+    </div>
+    <p>
+      The letter
+      <strong>
+        I
+      </strong>
+      is in the word but in the wrong spot.
+    </p>
+    <div class="help-modal__example">
+      <div class="help-modal__example-tile">
+        V
+      </div>
+      <div class="help-modal__example-tile">
+        A
+      </div>
+      <div class="help-modal__example-tile">
+        G
+      </div>
+      <div class="help-modal__example-tile help-modal__example-tile--absent">
+        U
+      </div>
+      <div class="help-modal__example-tile">
+        E
+      </div>
+    </div>
+    <p>
+      The letter
+      <strong>
+        U
+      </strong>
+      is not in the word in any spot.
+    </p>
+  </div>
+</Modal>

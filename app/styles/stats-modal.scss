@@ -21,8 +21,11 @@
   }
 
   &__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    width: 55px;
+    width: 58px;
 
     &__value {
       font-size: 36px;

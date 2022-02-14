@@ -11,7 +11,7 @@ export const EVALUATION = {
   ABSENT: 'ABSENT',
 };
 
-export const GAME_STATE = {
+export const GAME_STATUS = {
   WIN: 'WIN',
   FAIL: 'FAIL',
 };

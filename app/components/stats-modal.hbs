@@ -20,26 +20,34 @@
     <h1 class="stats-modal__header">
       Guess Distribution
     </h1>
-    {{#each this.guessDistribution key='guessCount' as |datum|}}
-      <div class="stats-modal__bar-row">
-        <div class="stats-modal__bar-label">
-          {{datum.guessCount}}
+    {{#if this.numPlayed}}
+      {{#each this.guessDistribution key='guessCount' as |datum|}}
+        <div class="stats-modal__bar-row">
+          <div class="stats-modal__bar-label">
+            {{datum.guessCount}}
+          </div>
+          <div
+            class="stats-modal__bar
+              {{if datum.percentage 'stats-modal__bar--nonzero'}}"
+            style="{{if datum.percentage (concat 'width: ' datum.percentage '%')
+              }}"
+          >
+            {{datum.frequency}}
+          </div>
         </div>
-        <div
-          class="stats-modal__bar
-            {{if datum.percentage 'stats-modal__bar--nonzero'}}"
-          style="{{if datum.percentage (concat 'width: ' datum.percentage '%')
-            }}"
-        >
-          {{datum.frequency}}
-        </div>
-      </div>
-    {{/each}}
+      {{/each}}
+    {{else}}
+      No Data
+    {{/if}}
   </div>
   {{#if @goToNextGame}}
     <div class="stats-modal__section">
-      <button class="button stats-modal__next-game-button" {{on 'click' @goToNextGame}}>
-        Next Wordle
+      <button
+        class="button stats-modal__next-game-button"
+        type="button"
+        {{on 'click' @goToNextGame}}
+      >
+        Next Game
       </button>
     </div>
   {{/if}}

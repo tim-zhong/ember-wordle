@@ -5,7 +5,7 @@ import { COLS, ROWS, SPECIAL_KEY } from 'ember-wordle/consts';
 import evaluate from 'ember-wordle/utils/evaluate';
 import { later } from '@ember/runloop';
 import { service } from '@ember/service';
-import { EVALUATION, GAME_STATE, CHEERS } from '../consts';
+import { EVALUATION, GAME_STATUS, CHEERS } from '../consts';
 import { buildGame } from 'ember-wordle/models/game';
 
 export default class GameController extends Controller {
@@ -47,6 +47,10 @@ export default class GameController extends Controller {
   _handleSubmit() {
     const { model, currentInput: userInput } = this;
 
+    if (this.isHelpModalOpen || this.isStatsModalOpen) {
+      return;
+    }
+
     if (
       userInput &&
       userInput.length === COLS &&
@@ -65,7 +69,7 @@ export default class GameController extends Controller {
       model.inputs = [...model.inputs, userInput];
 
       if (!currEvaluation.some((e) => e !== EVALUATION.CORRECT)) {
-        model.status = GAME_STATE.WIN;
+        model.status = GAME_STATUS.WIN;
         model.lastCompletedAt = Date.now();
         later(
           () =>
@@ -74,8 +78,18 @@ export default class GameController extends Controller {
             ),
           1200
         );
+        later(() => {
+          this.openStatsModal();
+          this.showNextGameButton = true;
+        }, 2000);
       } else if (model.evaluations.length === ROWS) {
-        model.status = GAME_STATE.FAIL;
+        model.status = GAME_STATUS.FAIL;
+        later(() => {
+          this.destructors.push(
+            this.toasts.post(this.model.solution.toUpperCase())
+          );
+          this.showNextGameButton = true;
+        }, 1200);
       }
 
       this.currentInput = '';
@@ -99,6 +113,8 @@ export default class GameController extends Controller {
   cleanup() {
     this.destructors.forEach((distruct) => distruct());
     this.closeStatsModal();
+    this.closeHelpModal();
+    this.showNextGameButton = false;
   }
 
   /**
@@ -107,6 +123,7 @@ export default class GameController extends Controller {
 
   @tracked allGames = [];
   @tracked isStatsModalOpen = false;
+  @tracked isHelpModalOpen = false;
 
   @action
   openStatsModal() {
@@ -128,20 +145,43 @@ export default class GameController extends Controller {
   }
 
   @action
-  maybeShowPostGameState() {
-    if (!this.model.status) {
+  maybeShowModal() {
+    if (this.model.status === GAME_STATUS.WIN) {
+      later(() => {
+        this.openStatsModal();
+        this.showNextGameButton = true;
+      }, 1200);
       return;
     }
-    later(() => {
-      if (this.model.status === GAME_STATE.WIN) {
-        this.openStatsModal(1200);
-      }
-      if (this.model.status === GAME_STATE.FAIL) {
+
+    if (this.model.status === GAME_STATUS.FAIL) {
+      later(() => {
         this.destructors.push(
           this.toasts.post(this.model.solution.toUpperCase())
         );
-      }
-      this.showNextGameButton = true;
-    }, 1200);
+        this.showNextGameButton = true;
+      }, 1200);
+      return;
+    }
+
+    const games = this.store.peekAll('game').content;
+    if (
+      games.length === 1 &&
+      games.firstObject.id === this.model.id &&
+      !this.model.inputs.length
+    ) {
+      // first time playing
+      this.openHelpModal();
+    }
+  }
+
+  @action
+  openHelpModal() {
+    this.isHelpModalOpen = true;
+  }
+
+  @action
+  closeHelpModal() {
+    this.isHelpModalOpen = false;
   }
 }

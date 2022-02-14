@@ -1,11 +1,15 @@
 import Component from '@glimmer/component';
-import { GAME_STATE as GAME_STATUS, ROWS } from '../consts';
+import { GAME_STATUS, ROWS } from '../consts';
 import { takeRightWhile, groupBy } from 'lodash';
 
 export default class StatsModalComponent extends Component {
+  get numPlayed() {
+    return this.args.games.filter(({ status }) => status).length;
+  }
   get stats() {
     const { games } = this.args;
-    const numPlayed = games.filter(({ status }) => status).length;
+    const { numPlayed } = this;
+
     const numWon = games.filter(
       ({ status }) => status === GAME_STATUS.WIN
     ).length;

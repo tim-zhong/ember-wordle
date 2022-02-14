@@ -1,0 +1,79 @@
+.help-modal {
+  align-items: flex-start;
+
+  &__header {
+    margin-bottom: 14px;
+  }
+
+  p {
+    display: block;
+    font-size: 14px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  &__section {
+    width: 100%;
+    padding: 8px 0;
+
+    & + & {
+      border-top: 1px solid $grey2;
+    }
+  }
+
+  &__example {
+    display: flex;
+    padding-top: 8px;
+  }
+
+  &__example-tile {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid $grey3;
+    font-size: 2rem;
+    font-weight: bold;
+    box-sizing: border-box;
+    color: $black;
+    text-transform: uppercase;
+    user-select: none;
+
+    & + & {
+      margin-left: 4px;
+    }
+
+    &--correct,
+    &--present,
+    &--absent {
+      color: $white;
+      @include inline-animation(500ms, ease-in) {
+        0% {
+          transform: rotateX(0);
+        }
+        50% {
+          transform: rotateX(-90deg);
+        }
+        100% {
+          transform: rotateX(0);
+        }
+      }
+    }
+
+    &--correct {
+      background-color: $correct;
+      border-color: $correct;
+    }
+    &--present {
+      background-color: $present;
+      border-color: $present;
+    }
+    &--absent {
+      background-color: $absent;
+      border-color: $absent;
+    }
+  }
+}

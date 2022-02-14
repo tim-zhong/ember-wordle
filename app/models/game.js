@@ -19,5 +19,3 @@ export function buildGame(solution) {
     solution,
   };
 }
-// success state
-// display answer if failed

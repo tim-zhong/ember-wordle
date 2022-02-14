@@ -1,10 +1,10 @@
-<div
-  class="game"
-  {{did-insert this.maybeShowPostGameState}}
-  {{did-update this.maybeShowPostGameState this.model.status}}
->
+<div class="game" {{did-insert this.maybeShowModal}}>
   <header class="game__header">
-    <button class="game__header__button" type="button">
+    <button
+      class="game__header__button"
+      type="button"
+      {{on 'click' this.openHelpModal}}
+    >
       {{inline-svg 'assets/icons/info'}}
     </button>
     <button
@@ -23,13 +23,13 @@
       @evaluations={{this.model.evaluations}}
       @isLastWordInvalid={{this.isLastSubmissionInvalid}}
     />
-    <div class="game__button-row">
-      {{#if this.showNextGameButton}}
-        <button class="button" {{on 'click' this.nextGame}}>
-          Next Wordle
+    {{#if this.showNextGameButton}}
+      <div class="game__button-overlay">
+        <button class="button" type="button" {{on 'click' this.nextGame}}>
+          Next Game
         </button>
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
   <div class="game__keyboard-container">
     <Game::Keyboard
@@ -45,4 +45,7 @@
     @games={{this.allGames}}
     @goToNextGame={{if this.model.status this.nextGame}}
   />
+{{/if}}
+{{#if this.isHelpModalOpen}}
+  <HelpModal @onClose={{this.closeHelpModal}} />
 {{/if}}
