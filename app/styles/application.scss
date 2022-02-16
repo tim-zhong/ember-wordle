@@ -27,6 +27,7 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 
   &--green {
     background-color: $green;
@@ -34,7 +35,7 @@ h1 {
 
     svg {
       fill: $white;
-      margin: 0 12px;
+      margin-left: 12px;
     }
   }
 }
