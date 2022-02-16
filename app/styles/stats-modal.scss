@@ -65,7 +65,22 @@
     }
   }
 
+  &__button-row {
+    flex-direction: row;
+    justify-content: center;
+
+    &__column {
+      flex-grow: 1;
+      display: flex;
+      justify-items: center;
+      padding: 16px 24px;
+
+      & + & {
+        border-left: 1px solid $black;
+      }
+    }
+  }
+
   &__next-game-button {
-    margin-top: 32px;
   }
 }

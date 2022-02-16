@@ -1,0 +1,10 @@
+<CopyButton
+  type="button"
+  class="button button--green share-button"
+  @clipboardText={{this.clipboardText}}
+  @success={{this.handleSuccess}}
+  @error={{this.handleError}}
+>
+  Share
+  {{inline-svg 'assets/icons/share'}}
+</CopyButton>

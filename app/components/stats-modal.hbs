@@ -40,15 +40,24 @@
       No Data
     {{/if}}
   </div>
-  {{#if @goToNextGame}}
-    <div class="stats-modal__section">
-      <button
-        class="button stats-modal__next-game-button"
-        type="button"
-        {{on 'click' @goToNextGame}}
-      >
-        Next Game
-      </button>
+  {{#if @currentGame.status}}
+    <div class="stats-modal__section stats-modal__button-row">
+      <div class="stats-modal__button-row__column">
+        <button
+          class="button"
+          type="button"
+          {{on 'click' @goToNextGame}}
+        >
+          Next Game
+        </button>
+      </div>
+      {{#if this.hasWon}}
+        <div class="stats-modal__button-row__column">
+          <div>
+            <ShareButton @game={{@currentGame}} />
+          </div>
+        </div>
+      {{/if}}
     </div>
   {{/if}}
 </Modal>

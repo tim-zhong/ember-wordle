@@ -7,7 +7,7 @@ $dismiss_transition_duration: 300ms;
     left: 50%;
     transform: translateX(-50%);
     overflow: visible;
-    z-index: 1;
+    z-index: 2;
   }
 
   &__toast {
@@ -20,7 +20,6 @@ $dismiss_transition_duration: 300ms;
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 4px;
-    text-transform: capitalize;
     max-height: 999px;
     opacity: 1;
 

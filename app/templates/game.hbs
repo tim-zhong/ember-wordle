@@ -7,7 +7,11 @@
     >
       {{inline-svg 'assets/icons/info'}}
     </button>
-    <a href="https://github.com/tim-zhong/ember-wordle" target="_blank">
+    <a
+      href="https://github.com/tim-zhong/ember-wordle"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <button class="game__header__button" type="button">
         {{inline-svg 'assets/icons/github'}}
       </button>
@@ -33,6 +37,9 @@
         <button class="button" type="button" {{on 'click' this.nextGame}}>
           Next Game
         </button>
+        {{#if this.hasWon}}
+          <ShareButton @game={{this.model}} />
+        {{/if}}
       </div>
     {{/if}}
   </div>
@@ -48,7 +55,8 @@
   <StatsModal
     @onClose={{this.closeStatsModal}}
     @games={{this.allGames}}
-    @goToNextGame={{if this.model.status this.nextGame}}
+    @goToNextGame={{this.nextGame}}
+    @currentGame={{this.model}}
   />
 {{/if}}
 {{#if this.isHelpModalOpen}}

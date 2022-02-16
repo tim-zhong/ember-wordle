@@ -3,9 +3,14 @@ import { GAME_STATUS, ROWS } from '../consts';
 import { takeRightWhile, groupBy } from 'lodash';
 
 export default class StatsModalComponent extends Component {
+  get hasWon() {
+    return this.args.currentGame.status === GAME_STATUS.WIN;
+  }
+
   get numPlayed() {
     return this.args.games.filter(({ status }) => status).length;
   }
+
   get stats() {
     const { games } = this.args;
     const { numPlayed } = this;

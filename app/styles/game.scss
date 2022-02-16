@@ -30,6 +30,7 @@
 
   &__button-overlay {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -41,6 +42,10 @@
     background-color: rgba(255, 255, 255, 0.5);
     opacity: 0;
     transition: opacity 250ms ease-in-out;
+
+    & > .button {
+      margin: 8px 0;
+    }
 
     &:hover {
       opacity: 1;

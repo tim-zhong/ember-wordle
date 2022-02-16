@@ -20,6 +20,10 @@ export default class GameController extends Controller {
 
   destructors = [];
 
+  get hasWon() {
+    return this.model.status === GAME_STATUS.WIN;
+  }
+
   @action
   handleInput(keyName) {
     this.isLastSubmissionInvalid = false;

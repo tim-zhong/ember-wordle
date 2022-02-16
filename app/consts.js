@@ -11,6 +11,12 @@ export const EVALUATION = {
   ABSENT: 'ABSENT',
 };
 
+export const EMOJI_BY_EVALUATION = {
+  [EVALUATION.CORRECT]: '🟩',
+  [EVALUATION.PRESENT]: '🟨',
+  [EVALUATION.ABSENT]: '⬜',
+};
+
 export const GAME_STATUS = {
   WIN: 'WIN',
   FAIL: 'FAIL',
