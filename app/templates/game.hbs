@@ -37,7 +37,7 @@
           Next Game
         </button>
         {{#if this.hasWon}}
-          <ShareButton @game={{this.model}} />
+          <ShareButton @evaluations={{this.model.evaluations}} />
         {{/if}}
       </div>
     {{/if}}
@@ -55,7 +55,8 @@
     @onClose={{this.closeStatsModal}}
     @games={{this.allGames}}
     @goToNextGame={{this.nextGame}}
-    @currentGame={{this.model}}
+    @currentGameStatus={{this.model.status}}
+    @currentGameEvaluations={{this.model.evaluations}}
   />
 {{/if}}
 {{#if this.isHelpModalOpen}}

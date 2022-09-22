@@ -2,9 +2,18 @@ import Component from '@glimmer/component';
 import { GAME_STATUS, ROWS } from '../consts';
 import { takeRightWhile, groupBy } from 'lodash';
 
+/**
+ * Modal to show the lifetime stats and a share button
+ *
+ * @arg {function} onClose -- Callback to invoke when the user attemptes to close the modal
+ * @arg {Game[]} games -- Models of all the previous games
+ * @arg {function} goToNextGame -- Callback to invoke when the user clicks on "Next Game"
+ * @arg {string} currentGameStatus -- Status of the current game (e.g. 'WON')
+ * @arg {string[][]} currentGameEvaluations -- Evaluation result of the current game
+ */
 export default class StatsModalComponent extends Component {
   get hasWon() {
-    return this.args.currentGame.status === GAME_STATUS.WIN;
+    return this.args.currentGameStatus === GAME_STATUS.WIN;
   }
 
   get numPlayed() {

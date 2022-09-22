@@ -2,25 +2,22 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import Service from '@ember/service';
+
+class MockToastsService extends Service {
+  get toasts() {
+    return [{ message: 'bar' }];
+  }
+}
 
 module('Integration | Component | toasts', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    this.owner.register('service:toasts', MockToastsService);
 
     await render(hbs`<Toasts />`);
 
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      <Toasts>
-        template block text
-      </Toasts>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).hasText('bar');
   });
 });

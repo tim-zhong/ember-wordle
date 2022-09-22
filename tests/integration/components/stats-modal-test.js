@@ -7,20 +7,27 @@ module('Integration | Component | stats-modal', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
-    await render(hbs`<StatsModal />`);
-
-    assert.dom(this.element).hasText('');
+    this.setProperties({
+      onClose: () => {},
+      games: [],
+      goToNextGame: () => {},
+      currentGameStatus: 'apple',
+      currentGameEvaluations: [
+        ['CORRECT', 'PRESENT', 'ABSENT', 'PRESENT', 'PRESENT'],
+      ],
+    });
 
     // Template block usage:
     await render(hbs`
-      <StatsModal>
-        template block text
-      </StatsModal>
+      <StatsModal
+        @onClose={{this.onClose}}
+        @games={{this.games}}
+        @goToNextGame={{this.goToNextGame}}
+        @currentGameStatus={{this.currentGameStatus}}
+        @currentGameEvaluations={{this.currentGameEvaluations}}
+      />
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom('[data-test-stats-modal-header]').hasText('Statistics');
   });
 });

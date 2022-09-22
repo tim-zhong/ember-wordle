@@ -1,7 +1,7 @@
-<div class="toasts__container">
+<div class='toasts__container'>
   {{#each (get (get-service 'toasts') 'toasts') key='id' as |toast|}}
     <div
-      class="toasts__toast {{unless toast.active 'toasts__toast--inactive'}}"
+      class='toasts__toast {{unless toast.active "toasts__toast--inactive"}}'
     >
       {{toast.message}}
     </div>

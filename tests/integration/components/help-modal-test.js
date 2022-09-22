@@ -7,20 +7,8 @@ module('Integration | Component | help-modal', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
     await render(hbs`<HelpModal />`);
 
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
-    await render(hbs`
-      <HelpModal>
-        template block text
-      </HelpModal>
-    `);
-
-    assert.dom(this.element).hasText('template block text');
+    assert.dom('[data-test-help-modal-header]').hasText('HOW TO PLAY');
   });
 });

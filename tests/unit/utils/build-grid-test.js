@@ -2,9 +2,14 @@ import buildGrid from 'ember-wordle/utils/build-grid';
 import { module, test } from 'qunit';
 
 module('Unit | Utility | build-grid', function () {
-  // TODO: Replace this with your real tests.
   test('it works', function (assert) {
-    let result = buildGrid();
-    assert.ok(result);
+    const numRow = 2;
+    const numCol = 2;
+    const inputs = ['yo'];
+    let result = buildGrid(numRow, numCol, inputs);
+    assert.deepEqual(result, [
+      ['y', 'o'],
+      [null, null],
+    ]);
   });
 });

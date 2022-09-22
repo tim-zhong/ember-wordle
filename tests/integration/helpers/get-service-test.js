@@ -2,16 +2,22 @@ import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
+import Service from '@ember/service';
+
+class MockService extends Service {
+  get foo() {
+    return 'bar';
+  }
+}
 
 module('Integration | Helper | get-service', function (hooks) {
   setupRenderingTest(hooks);
 
-  // TODO: Replace this with your real tests.
-  test('it renders', async function (assert) {
-    this.set('inputValue', '1234');
+  test('it works', async function (assert) {
+    this.owner.register('service:mock-service', MockService);
 
-    await render(hbs`{{get-service this.inputValue}}`);
+    await render(hbs`{{get (get-service 'mock-service') 'foo'}}`);
 
-    assert.dom(this.element).hasText('1234');
+    assert.dom(this.element).hasText('bar');
   });
 });

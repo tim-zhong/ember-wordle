@@ -2,11 +2,16 @@ import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { ROWS, EMOJI_BY_EVALUATION, COLS } from '../consts';
 
+/**
+ * Button to copy the visualized game result to clipboard
+ *
+ * @arg {string[][]} evaluations -- Evaluation result of the game to share
+ */
 export default class ShareButtonComponent extends Component {
   @service toasts;
 
   get clipboardText() {
-    const evaluations = this.args.game.evaluations.filter(
+    const evaluations = this.args.evaluations.filter(
       (row) => row.length === COLS
     );
 

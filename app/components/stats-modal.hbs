@@ -1,6 +1,6 @@
 <Modal @onClose={{@onClose}} class='stats-modal'>
   <div class='stats-modal__section'>
-    <h1 class='stats-modal__header'>
+    <h1 class='stats-modal__header' data-test-stats-modal-header>
       Statistics
     </h1>
     <div class='stats-modal__stats-row'>
@@ -41,7 +41,7 @@
       No Data
     {{/if}}
   </div>
-  {{#if @currentGame.status}}
+  {{#if @currentGameStatus}}
     <div class='stats-modal__section stats-modal__button-row'>
       <div class='stats-modal__button-row__column'>
         <button class='button' type='button' {{on 'click' @goToNextGame}}>
@@ -51,7 +51,7 @@
       {{#if this.hasWon}}
         <div class='stats-modal__button-row__column'>
           <div>
-            <ShareButton @game={{@currentGame}} />
+            <ShareButton @evaluations={{@currentGameEvaluations}} />
           </div>
         </div>
       {{/if}}
