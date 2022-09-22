@@ -1,30 +1,29 @@
-<div class="game" {{did-insert this.maybeShowModal}}>
-  <header class="game__header">
+<div class='game' {{did-insert this.maybeShowModal}}>
+  <header class='game__header'>
     <button
-      class="game__header__button"
-      type="button"
+      class='game__header__button'
+      type='button'
       {{on 'click' this.openHelpModal}}
     >
       {{inline-svg 'assets/icons/info'}}
     </button>
     <a
-      href="https://github.com/tim-zhong/ember-wordle"
-      target="_blank"
-      rel="noopener noreferrer"
+      href='https://github.com/tim-zhong/ember-wordle'
+      target='_blank'
+      rel='noopener noreferrer'
+      class='game__header__button'
     >
-      <button class="game__header__button" type="button">
-        {{inline-svg 'assets/icons/github'}}
-      </button>
+      {{inline-svg 'assets/icons/github'}}
     </a>
     <button
-      class="game__header__button"
-      type="button"
+      class='game__header__button'
+      type='button'
       {{on 'click' this.openStatsModal}}
     >
       {{inline-svg 'assets/icons/stats'}}
     </button>
   </header>
-  <div class="game__main-area">
+  <div class='game__main-area'>
     <Toasts />
     <Game::Grid
       @submittedInputs={{this.model.inputs}}
@@ -33,8 +32,8 @@
       @isLastWordInvalid={{this.isLastSubmissionInvalid}}
     />
     {{#if this.showNextGameButton}}
-      <div class="game__button-overlay">
-        <button class="button" type="button" {{on 'click' this.nextGame}}>
+      <div class='game__button-overlay'>
+        <button class='button' type='button' {{on 'click' this.nextGame}}>
           Next Game
         </button>
         {{#if this.hasWon}}
@@ -43,7 +42,7 @@
       </div>
     {{/if}}
   </div>
-  <div class="game__keyboard-container">
+  <div class='game__keyboard-container'>
     <Game::Keyboard
       @handleInput={{this.handleInput}}
       @inputs={{this.model.inputs}}

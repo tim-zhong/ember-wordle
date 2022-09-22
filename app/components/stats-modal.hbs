@@ -1,36 +1,37 @@
-<Modal @onClose={{@onClose}} class="stats-modal">
-  <div class="stats-modal__section">
-    <h1 class="stats-modal__header">
+<Modal @onClose={{@onClose}} class='stats-modal'>
+  <div class='stats-modal__section'>
+    <h1 class='stats-modal__header'>
       Statistics
     </h1>
-    <div class="stats-modal__stats-row">
+    <div class='stats-modal__stats-row'>
       {{#each this.stats key='label' as |stat|}}
-        <div class="stats-modal__stat">
-          <div class="stats-modal__stat__value">
+        <div class='stats-modal__stat'>
+          <div class='stats-modal__stat__value'>
             {{stat.value}}
           </div>
-          <div class="stats-modal__stat__label">
+          <div class='stats-modal__stat__label'>
             {{stat.label}}
           </div>
         </div>
       {{/each}}
     </div>
   </div>
-  <div class="stats-modal__section">
-    <h1 class="stats-modal__header">
+  <div class='stats-modal__section'>
+    <h1 class='stats-modal__header'>
       Guess Distribution
     </h1>
     {{#if this.numPlayed}}
       {{#each this.guessDistribution key='guessCount' as |datum|}}
-        <div class="stats-modal__bar-row">
-          <div class="stats-modal__bar-label">
+        <div class='stats-modal__bar-row'>
+          <div class='stats-modal__bar-label'>
             {{datum.guessCount}}
           </div>
           <div
-            class="stats-modal__bar
-              {{if datum.percentage 'stats-modal__bar--nonzero'}}"
-            style="{{if datum.percentage (concat 'width: ' datum.percentage '%')
-              }}"
+            class='stats-modal__bar
+              {{if datum.percentage "stats-modal__bar--nonzero"}}'
+            style={{html-safe
+              (if datum.percentage (concat 'width: ' datum.percentage '%'))
+            }}
           >
             {{datum.frequency}}
           </div>
@@ -41,18 +42,14 @@
     {{/if}}
   </div>
   {{#if @currentGame.status}}
-    <div class="stats-modal__section stats-modal__button-row">
-      <div class="stats-modal__button-row__column">
-        <button
-          class="button"
-          type="button"
-          {{on 'click' @goToNextGame}}
-        >
+    <div class='stats-modal__section stats-modal__button-row'>
+      <div class='stats-modal__button-row__column'>
+        <button class='button' type='button' {{on 'click' @goToNextGame}}>
           Next Game
         </button>
       </div>
       {{#if this.hasWon}}
-        <div class="stats-modal__button-row__column">
+        <div class='stats-modal__button-row__column'>
           <div>
             <ShareButton @game={{@currentGame}} />
           </div>

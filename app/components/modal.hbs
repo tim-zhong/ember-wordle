@@ -1,8 +1,9 @@
-<div class="modal__overlay" {{on 'click' this.handleOverlayClick}}>
-  <div class="modal__content" id="modal__content" ...attributes>
+{{! template-lint-disable no-invalid-interactive }}
+<div class='modal__overlay' {{on 'click' this.handleOverlayClick}}>
+  <div class='modal__content' id='modal__content' ...attributes>
     <button
-      class="modal__close-button"
-      type="button"
+      class='modal__close-button'
+      type='button'
       {{on 'click' this.handleCloseClick}}
     >
       {{inline-svg 'assets/icons/close'}}
@@ -10,3 +11,4 @@
     {{yield}}
   </div>
 </div>
+{{! template-lint-enable no-invalid-interactive }}
