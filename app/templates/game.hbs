@@ -29,7 +29,7 @@
       @submittedInputs={{this.model.inputs}}
       @currentInput={{this.currentInput}}
       @evaluations={{this.model.evaluations}}
-      @isLastWordInvalid={{this.isLastSubmissionInvalid}}
+      @shakeRowIdx={{if this.isLastSubmissionInvalid this.model.inputs.length}}
     />
     {{#if this.showNextGameButton}}
       <div class='game__button-overlay'>

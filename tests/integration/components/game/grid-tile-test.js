@@ -7,20 +7,21 @@ module('Integration | Component | game/grid-tile', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
-    await render(hbs`<Game::GridTile />`);
+    this.setProperties({
+      letter: 'A',
+      evaluation: 'CORRECT',
+    });
 
     assert.dom(this.element).hasText('');
 
     // Template block usage:
     await render(hbs`
-      <Game::GridTile>
-        template block text
-      </Game::GridTile>
+      <Game::GridTile 
+        @letter={{this.letter}}
+        @evaluation={{this.evaluation}}
+      />
     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).hasText('A');
   });
 });

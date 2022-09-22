@@ -1,8 +1,8 @@
-<div class="grid">
+<div class='grid'>
   {{#each this.grid key='@index' as |row rowIdx|}}
     <div
-      class="grid__row"
-      {{did-update this.shakeRow (eq rowIdx this.invalidRowIdx)}}
+      class='grid__row'
+      {{did-update this.shakeRow (eq rowIdx @shakeRowIdx)}}
     >
       {{#each row key='@index' as |letter colIdx|}}
         <Game::GridTile

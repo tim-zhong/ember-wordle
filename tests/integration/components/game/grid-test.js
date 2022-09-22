@@ -7,20 +7,22 @@ module('Integration | Component | game/grid', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    this.setProperties({
+      submittedInputs: ['apple'],
+      currentInput: 'ber',
+      evaluations: [['CORRECT', 'PRESENT', 'ABSENT', 'PRESENT', 'PRESENT']],
+      shakeRowIdx: undefined,
+    });
 
-    await render(hbs`<Game::Grid />`);
-
-    assert.dom(this.element).hasText('');
-
-    // Template block usage:
     await render(hbs`
-      <Game::Grid>
-        template block text
-      </Game::Grid>
-    `);
+      <Game::Grid
+        @submittedInputs={{this.submittedInputs}}
+        @currentInput={{this.currentInput}}
+        @evaluations={{this.evaluations}}
+        @shakeRowIdx={{this.shakeRowIdx}}
+      />
+     `);
 
-    assert.dom(this.element).hasText('template block text');
+    assert.dom(this.element).hasText('a p p l e b e r');
   });
 });

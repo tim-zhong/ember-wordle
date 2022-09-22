@@ -2,6 +2,14 @@ import Component from '@glimmer/component';
 import { KEYBOARD } from 'ember-wordle/consts';
 import { EVALUATION } from '../../consts';
 
+/**
+ * Renders a qwerty keyboard that allows user to input by either
+ * clicking or typing a letter
+ *
+ * @arg {function} handleInput -- Callback when input has changed
+ * @arg {string[]} inputs -- Valid input strings that has been submitted
+ * @arg {string[][]} evaluations -- 2D array that maps each submitted letter to its evaluation result
+ */
 export default class GameKeyboardComponent extends Component {
   get keyboard() {
     return KEYBOARD.map((row) =>
